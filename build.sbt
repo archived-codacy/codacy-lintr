@@ -1,6 +1,6 @@
 import com.typesafe.sbt.packager.docker.{Cmd, ExecCmd}
 
-name := """codacy-engine-pylint"""
+name := """codacy-engine-lintr"""
 
 version := "1.0-SNAPSHOT"
 
