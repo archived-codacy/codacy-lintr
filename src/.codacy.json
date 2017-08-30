@@ -1,0 +1,12 @@
+{
+  "files" : ["testing.py"],
+  "tools":[
+    {
+  "name": "PyLint",
+  "patterns": [
+    {
+      "patternId": "C0111"
+    }
+  ]
+}
+]}
