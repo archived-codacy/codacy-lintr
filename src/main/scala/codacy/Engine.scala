@@ -1,6 +1,6 @@
 package codacy
 
 import codacy.dockerApi.DockerEngine
-import codacy.pylint.Pylint
+import codacy.lintr.Lintr
 
-object Engine extends DockerEngine(Pylint)
+object Engine extends DockerEngine(Lintr)

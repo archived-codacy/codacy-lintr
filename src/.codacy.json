@@ -1,12 +1,16 @@
 {
-  "files" : ["testing.py"],
-  "tools":[
-    {
-  "name": "PyLint",
-  "patterns": [
-    {
-      "patternId": "C0111"
-    }
-  ]
+    "files" : ["testing.py", "another_testing.py"],
+    "tools":[
+	{
+	    "name": "PyLint",
+	    "patterns": [
+		{
+		    "patternId": "C0111"
+		},
+		{
+		    "patternId": "C0112"
+		}
+	    ]
+	}
+    ]
 }
-]}

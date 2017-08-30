@@ -1,8 +1,8 @@
-package codacy.pylint
+package codacy.lintr
 
 import codacy.docker.api.Parameter
 
-private[pylint] object ParameterHeader {
+private[lintr] object ParameterHeader {
 
   def get(name: Parameter.Name): String = values.getOrElse(name.value, "MASTER")
 

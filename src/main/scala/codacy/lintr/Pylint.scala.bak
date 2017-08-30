@@ -19,6 +19,17 @@ object Pylint extends Tool {
   def apply(source: Source.Directory, configuration: Option[List[Pattern.Definition]], files: Option[Set[Source.File]],
             options: Map[Configuration.Key, Configuration.Value])
            (implicit specification: Tool.Specification): Try[List[Result]] = {
+
+    println("Parameters in order: source, configuration, files, options, specification")
+    println(source)
+    println(configuration)
+    println(files)
+    println(options)
+    println(specification)
+    println()
+    println(callRApply(source, configuration, files, options, specification))
+    println()
+
     val completeConf = ToolHelper.patternsToLint(configuration)
 
     def isEnabled(issue: Result) = {
@@ -65,9 +76,42 @@ object Pylint extends Tool {
     lines.map { line => line.flatMap(parseLine).flatten.filter(isEnabled) }
   }
 
+  private def definitionToJSON(definition: Pattern.Definition): String = {
+    s"""{"patternId":"${definition.patternId}","parameters":"${definition.parameters}"}"""
+  }
+
+  private def parameterSpecToJSON(spec: Parameter.Specification): String = {
+    s"""{"name":"${spec.name}","default":"${spec.default}"}"""
+  }
+
+  private def patternSpecToJSON(spec: Pattern.Specification): String = {
+    val parametersJSON: String = {
+      if (spec.parameters.isDefined) {
+        "[".concat(spec.parameters.get.map( x => parameterSpecToJSON(x) ).mkString(",")).concat("]")
+      } else {
+        "[]"
+      }
+    }
+    s"""{"patternId":"${spec.patternId}","level":"${spec.level}","category":"${spec.category}","languages":"${spec.languages}","parameters":$parametersJSON}"""
+  }
+
+  private def toolSpecToJSON(spec: Tool.Specification): String = {
+    val patternsJSON: String = "[".concat(spec.patterns.map( x => patternSpecToJSON(x)).mkString(",")).concat("]")
+    s"""{"name":"${spec.name}","patterns":"$patternsJSON"}"""
+  }
+
+  private def callRApply(source: Source.Directory, configuration: Option[List[Pattern.Definition]],
+                         files: Option[Set[Source.File]], options: Map[Configuration.Key, Configuration.Value],
+                         specification: Tool.Specification): String = {
+    val configJSON = "[".concat(configuration.get.map(x => definitionToJSON(x)).mkString(",")).concat("]")
+    val filesJSON = "[".concat(files.get.mkString(",")).concat("]")
+    val optionsJSON = Json.stringify(Json.toJson(options))
+    val toolSpecJSON = toolSpecToJSON(specification)
+    s"""{"source":"$source",configuration:"$configJSON",files:"$filesJSON","options":$optionsJSON,"specification":$toolSpecJSON}"""
+  }
 
   private def parseLine(line: String) = {
-    val LineRegex = """(.*?)###(\d*?)###(.*?)###(.*?)""".r
+    val LineRegex = """(.*?)###(\d*?)###(.*?)###(.*?).r""".r
 
     def createIssue(filename: String, lineNumber: String, message: String, patternId: String) = {
       // If the pylint returns no line put the issue in the first line
@@ -190,6 +234,15 @@ object Pylint extends Tool {
     }
   }
 
+  /** Takes a list of pattern definitions (from codacy.docker.api) and returns
+    * a scala Try[java.nio.file.Path].
+    *
+    * The a config file is written to a filename coming from randomFile(), the contents are
+    * a header
+    *
+    * @param configuration
+    * @return
+    */
   private def writeConfigFile(configuration: List[Pattern.Definition]): Try[Path] = {
 
     val parameters = configuration.flatMap { pattern =>
@@ -213,6 +266,12 @@ object Pylint extends Tool {
     write(paramsToPrint)
   }
 
+  /** Turns a parameter definintion (from codacy.docker.api) and returns a string
+    * in the form of "name=value".
+    *
+    * @param parameter
+    * @return
+    */
   private def generateParameter(parameter: Parameter.Definition): String = {
     val parameterValue = (parameter.value: JsValue) match {
       case JsString(value) => value
@@ -221,6 +280,11 @@ object Pylint extends Tool {
     s"${parameter.name}=$parameterValue"
   }
 
+  /** Creates temp file. File defaults to "codacy-.conf"
+    *
+    * @param extension
+    * @return
+    */
   private def randomFile(extension: String = "conf") = Try(
     Files.createTempFile("codacy-", s".$extension")
   )
@@ -230,6 +294,9 @@ object Pylint extends Tool {
       Files.write(confFile, content.getBytes)
     }
   }
+
+
 }
 
 case class PyLintParserException(message: String) extends Exception(message)
+

@@ -1,0 +1,10 @@
+[0m[[0m[0minfo[0m] [0m[0m:: delivering :: default#src_2.12;0.1-SNAPSHOT :: 0.1-SNAPSHOT :: integration :: Wed Aug 30 14:39:08 EDT 2017[0m
+[0m[[0m[0mdebug[0m] [0m[0m	options = status=integration pubdate=Wed Aug 30 14:39:08 EDT 2017 validate=true resolveDynamicRevisions=true merge=true resolveId=null pubBranch=null[0m
+[0m[[0m[0minfo[0m] [0m[0m	delivering ivy file to /Users/mm94978/mm_projects/codacy-lintr/src/target/scala-2.12/ivy-0.1-SNAPSHOT.xml[0m
+[0m[[0m[0mdebug[0m] [0m[0m	deliver done (11ms)[0m
+[0m[[0m[0mdebug[0m] [0m[0mlocal do not support transaction. overwrite transaction not supported yet[0m
+[0m[[0m[0minfo[0m] [0m[0m	published src_2.12 to /Users/mm94978/.ivy2/local/default/src_2.12/0.1-SNAPSHOT/poms/src_2.12.pom[0m
+[0m[[0m[0minfo[0m] [0m[0m	published src_2.12 to /Users/mm94978/.ivy2/local/default/src_2.12/0.1-SNAPSHOT/jars/src_2.12.jar[0m
+[0m[[0m[0minfo[0m] [0m[0m	published src_2.12 to /Users/mm94978/.ivy2/local/default/src_2.12/0.1-SNAPSHOT/srcs/src_2.12-sources.jar[0m
+[0m[[0m[0minfo[0m] [0m[0m	published src_2.12 to /Users/mm94978/.ivy2/local/default/src_2.12/0.1-SNAPSHOT/docs/src_2.12-javadoc.jar[0m
+[0m[[0m[0minfo[0m] [0m[0m	published ivy to /Users/mm94978/.ivy2/local/default/src_2.12/0.1-SNAPSHOT/ivys/ivy.xml[0m
