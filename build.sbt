@@ -27,27 +27,19 @@ version in Docker := "1.0"
 organization := "com.codacy"
 
 val installAll =
-  s"""echo "http://dl-cdn.alpinelinux.org/alpine/edge/main" >> /etc/apk/repositories &&
-     |apk --no-cache add bash wget ca-certificates git &&
-     |apk --no-cache add python &&
-     |apk --no-cache add 'python3>3.6.1' &&
-     |wget "https://bootstrap.pypa.io/get-pip.py" -O /dev/stdout | python &&
-     |wget "https://bootstrap.pypa.io/get-pip.py" -O /dev/stdout | python3 &&
-     |python -m pip install django==1.9.2 flask==0.10.1 pylint-flask==0.1 flask-wtf==0.12 --upgrade --ignore-installed --no-cache-dir &&
-     |python3 -m pip install django==1.9.2 flask==0.10.1  pylint-flask==0.1 flask-wtf==0.12 --upgrade --ignore-installed --no-cache-dir &&
-     |python -m pip install git+https://github.com/landscapeio/pylint-django@93fd04120d0690189c35b7b2eaace23117f388c5 --upgrade --ignore-installed --no-cache-dir &&
-     |python3 -m pip install git+https://github.com/landscapeio/pylint-django@93fd04120d0690189c35b7b2eaace23117f388c5 --upgrade --ignore-installed --no-cache-dir &&
-     |python -m pip install pylint-common==0.2.2 &&
-     |python3 -m pip install pylint-common==0.2.2 &&
-     |python -m pip install pylint-celery==0.3 &&
-     |python3 -m pip install pylint-celery==0.3 &&
-     |python -m pip install pylint==1.7.1 --upgrade --ignore-installed --no-cache-dir &&
-     |python3 -m pip install pylint==1.7.1 --upgrade --ignore-installed --no-cache-dir &&
-     |python -m pip uninstall -y pip &&
-     |python3 -m pip uninstall -y pip &&
-     |apk del wget ca-certificates git &&
-     |rm -rf /tmp/* &&
-     |rm -rf /var/cache/apk/*""".stripMargin.replaceAll(System.lineSeparator()," ")
+  s"""apk update 
+  && apk add ca-certificates curl
+  && curl --silent 
+    --location https://github.com/sgerrand/alpine-pkg-R/releases/download/v3.2.3-r0/R-3.2.3-r0.apk --output /var/cache/apk/R-3.2.3-r0.apk 
+    --location https://github.com/sgerrand/alpine-pkg-R/releases/download/v3.2.3-r0/R-dev-3.2.3-r0.apk --output /var/cache/apk/R-dev-3.2.3-r0.apk 
+    --location https://github.com/sgerrand/alpine-pkg-R/releases/download/v3.2.3-r0/R-doc-3.2.3-r0.apk --output /var/cache/apk/R-doc-3.2.3-r0.apk 
+  && apk add --allow-untrusted
+    /var/cache/apk/R-3.2.3-r0.apk 
+    /var/cache/apk/R-dev-3.2.3-r0.apk 
+    /var/cache/apk/R-doc-3.2.3-r0.apk 
+  && rm -fr /var/cache/apk/*
+  && echo "http://dl-cdn.alpinelinux.org/alpine/edge/main" >> /etc/apk/repositories 
+  && apk --no-cache add bash""".stripMargin.replaceAll(System.lineSeparator()," ")
 
 mappings in Universal <++= (resourceDirectory in Compile) map { (resourceDir: File) =>
   val src = resourceDir / "docs"
