@@ -1,6 +1,5 @@
 {
-    "files" : ["testing.py", "another_testing.py", "bad_r_script.R", "bad_r_script_2.R"],
-    "tools":[
+    "files" : ["testing.py", "another_testing.py", "bad_r_script.R", "bad_r_script_2    "tools":[
 	{
 	    "name": "Lintr",
 	    "patterns": [
