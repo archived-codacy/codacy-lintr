@@ -21,6 +21,15 @@ object Lintr extends Tool {
            (implicit specification: Tool.Specification): Try[List[Result]] = {
     println("HIIII")
     Try {
+        CommandRunner.exec(List("Rscript", "-e", "print(getwd())")) match {
+        case Right(resultFromTool) =>
+          println(resultFromTool.stdout)
+        case Left(failure) =>
+          throw failure
+      }
+     }
+ 
+    Try {
       val rCall = getRSysCall(source, configuration, files, options, specification)
       CommandRunner.exec(rCall) match {
         case Right(resultFromTool) =>
