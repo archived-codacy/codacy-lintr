@@ -57,11 +57,6 @@
         "category": "CodeStyle"
     },
     {
-        "patternId": "lint",
-        "level": "Warning",
-        "category": "CodeStyle"
-    },
-    {
         "patternId": "no_tab_linter",
         "level": "Warning",
         "category": "CodeStyle"
@@ -82,7 +77,12 @@
         "category": "CodeStyle"
     },
     {
-        "patternId": "path_linters",
+        "patternId": "absolute_path_linter",
+        "level": "Warning",
+        "category": "CodeStyle"
+    },
+    {
+        "patternId": "nonportable_path_linter",
         "level": "Warning",
         "category": "CodeStyle"
     },
