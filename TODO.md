@@ -2,10 +2,10 @@
 
 ### Configuration
 
-1. .codacy.json **[Eddie]**
+1. .codacy.json **[Done]**
     - Add `lintr` patterns
-2. Add patterns to patterns.json **[Jeanie]**
-3. (Low priority) resources/docs/description/ markdown files
+2. Add patterns to patterns.json **[Done]**
+3. (Low priority) resources/docs/description/ markdown files **[Eddie]**
 4. (Low priority) resources/docs/test/ .R files
 
 
