@@ -1,8 +1,14 @@
 {
   "name": "Lintr",
   "patterns": [
+      
     {
         "patternId": "undesirable_function_linter",
+        "level": "Warning",
+        "category": "CodeStyle"
+    },
+    {
+        "patternId": "undesirable_operator_linter",
         "level": "Warning",
         "category": "CodeStyle"
     },
