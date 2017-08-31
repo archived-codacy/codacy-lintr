@@ -19,25 +19,8 @@ object Lintr extends Tool {
   def apply(source: Source.Directory, configuration: Option[List[Pattern.Definition]], files: Option[Set[Source.File]],
             options: Map[Configuration.Key, Configuration.Value])
            (implicit specification: Tool.Specification): Try[List[Result]] = {
-    println(source)
-    println(configuration)
-    println(files)
-    println(options)
-    println(specification)
-    Try {
-        CommandRunner.exec(List("Rscript", "-e", "print(getwd())")) match {
-        case Right(resultFromTool) =>
-          println(resultFromTool.stdout)
-        case Left(failure) =>
-          throw failure
-      }
-     }
- 
-      println("MSG 1")
-      val rCall = getRSysCall(source, configuration, files, options, specification)
-      println("MSG 2")
-      println(rCall)
 
+    val rCall = getRSysCall(source, configuration, files, options, specification)
     Try {
       CommandRunner.exec(rCall) match {
         case Right(resultFromTool) =>

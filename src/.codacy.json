@@ -2,7 +2,7 @@
     "files" : ["testing.py", "another_testing.py", "bad_r_script_2.R"],
     "tools":[
 	{
-	    "name": "PyLint",
+	    "name": "Lintr",
 	    "patterns": [
 		{
 		    "patternId": "C0111"
