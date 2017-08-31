@@ -13,21 +13,28 @@ import scala.util.{Properties, Success, Try}
 
 object Lintr extends Tool {
 
-  private val pythonVersionKey = Configuration.Key("python_version")
-  private val python3 = "3"
-
   def apply(source: Source.Directory, configuration: Option[List[Pattern.Definition]], files: Option[Set[Source.File]],
             options: Map[Configuration.Key, Configuration.Value])
            (implicit specification: Tool.Specification): Try[List[Result]] = {
 
-    Try {
+      CommandRunner.exec(List("Rscript", "-e", "print(mean(runif(10)))")) match{
+        case Right(resultFromTool) =>
+          println(resultFromTool.stdout)
+        case Left(failure) =>
+          // println(failure.getMessage)
+          throw failure
+      }
+      println("before getRSysCall")
       val rCall = getRSysCall(source, configuration, files, options, specification)
+      println(rCall)
+      // Try {
       CommandRunner.exec(rCall) match {
         case Right(resultFromTool) =>
           println(resultFromTool.stdout)
         case Left(failure) =>
+          // println(failure.getMessage)
           throw failure
-      }
+      // }
     }
 
     Try {
