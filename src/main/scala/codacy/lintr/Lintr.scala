@@ -20,8 +20,6 @@ object Lintr extends Tool {
             options: Map[Configuration.Key, Configuration.Value])
            (implicit specification: Tool.Specification): Try[List[Result]] = {
 
-    println("HIT")
-
     Try {
       val rCall = getRSysCall(source, configuration, files, options, specification)
       CommandRunner.exec(rCall) match {
@@ -46,7 +44,7 @@ object Lintr extends Tool {
     val optionsJSON = Json.stringify(Json.toJson(options))
     val toolSpecJSON = toolSpecToJSON(specification)
     val arg = s"""{"source":"$source","configuration":$configJSON,"files":$filesJSON,"options":$optionsJSON,"specification":$toolSpecJSON}"""
-    List("Rscript", "/src/codacy-lintr.R", arg)
+    return List("Rscript", "/src/codacy-lintr.R", arg)
   }
 
   private def definitionToJSON(definition: Pattern.Definition): String = {
