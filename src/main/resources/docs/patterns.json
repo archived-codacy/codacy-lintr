@@ -1,5 +1,5 @@
 {
-  "name": "PyLint",
+  "name": "Lintr",
   "patterns": [
     {
       "patternId": "C0111",
