@@ -1,16 +1,33 @@
 {
-    "files" : ["testing.py", "another_testing.py"],
-    "tools":[
-	{
-	    "name": "PyLint",
-	    "patterns": [
-		{
-		    "patternId": "C0111"
-		},
-		{
-		    "patternId": "C0112"
-		}
-	    ]
-	}
+    "files": [
+        "testing.py",
+        "another_testing.py"
+    ],
+    "tools": [
+        {
+            "name": "PyLint",
+            "patterns": [
+                {
+                    "patternId": "C0111"
+                },
+                {
+                    "patternId": "C0112"
+                }
+            ]
+        },
+        {
+            "name": "Lintr",
+            "patterns": [
+                {
+                    "patternId": "undesirable_function_linter"
+                },
+                {
+                    "patternId": "undesirable_operator_linter"
+                },
+                {
+                    "patternId": "unneeded_concatenation_linter"
+                }
+            ]
+        }
     ]
 }
