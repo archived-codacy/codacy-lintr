@@ -12,3 +12,6 @@
         - Recontruct the arguments to the apply function in src/main/scala/codacy/lintr/Lintr.scala
     2. Classify Files (.R and not .R)
     3. Call lintr on .R files
+
+
+3. Create a variety of .codacy.json files to test different user configurations.
