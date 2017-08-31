@@ -20,6 +20,8 @@ object Lintr extends Tool {
             options: Map[Configuration.Key, Configuration.Value])
            (implicit specification: Tool.Specification): Try[List[Result]] = {
 
+    println("HIT")
+
     Try {
       val rCall = getRSysCall(source, configuration, files, options, specification)
       CommandRunner.exec(rCall) match {
