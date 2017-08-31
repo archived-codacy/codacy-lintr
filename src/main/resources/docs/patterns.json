@@ -1,7 +1,131 @@
 {
   "name": "Lintr",
   "patterns": [
-      
+    {
+        "patternId": "T_and_F_symbol_linter",
+        "level": "Warning",
+        "category": "CodeStyle"
+    },
+    {
+        "patternId": "assignment_linter",
+        "level": "Warning",
+        "category": "CodeStyle"
+    },
+    {
+        "patternId": "closed_curly_linter",
+        "level": "Warning",
+        "category": "CodeStyle"
+    },
+    {
+        "patternId": "commas_linter",
+        "level": "Warning",
+        "category": "CodeStyle"
+    },
+    {
+        "patternId": "comment_linters",
+        "level": "Warning",
+        "category": "CodeStyle"
+    },
+    {
+        "patternId": "extraction_operator_linter",
+        "level": "Warning",
+        "category": "CodeStyle"
+    },
+    {
+        "patternId": "function_left_parentheses",
+        "level": "Warning",
+        "category": "CodeStyle"
+    },
+    {
+        "patternId": "get_source_expressions",
+        "level": "Warning",
+        "category": "CodeStyle"
+    },
+    {
+        "patternId": "implicit_integer_linter",
+        "level": "Warning",
+        "category": "CodeStyle"
+    },
+    {
+        "patternId": "infix_spaces_linter",
+        "level": "Warning",
+        "category": "CodeStyle"
+    },
+    {
+        "patternId": "line_length_linter",
+        "level": "Warning",
+        "category": "CodeStyle"
+    },
+    {
+        "patternId": "lint",
+        "level": "Warning",
+        "category": "CodeStyle"
+    },
+    {
+        "patternId": "no_tab_linter",
+        "level": "Warning",
+        "category": "CodeStyle"
+    },
+    {
+        "patternId": "object_name_linters",
+        "level": "Warning",
+        "category": "CodeStyle"
+    },
+    {
+        "patternId": "object_usage_linter",
+        "level": "Warning",
+        "category": "CodeStyle"
+    },
+    {
+        "patternId": "open_curly_linter",
+        "level": "Warning",
+        "category": "CodeStyle"
+    },
+    {
+        "patternId": "path_linters",
+        "level": "Warning",
+        "category": "CodeStyle"
+    },
+    {
+        "patternId": "pipe_continuation_linter",
+        "level": "Warning",
+        "category": "CodeStyle"
+    },
+    {
+        "patternId": "semicolon_terminator_linter",
+        "level": "Warning",
+        "category": "CodeStyle"
+    },
+    {
+        "patternId": "seq_linter",
+        "level": "Warning",
+        "category": "CodeStyle"
+    },
+    {
+        "patternId": "single_quotes_linter",
+        "level": "Warning",
+        "category": "CodeStyle"
+    },
+    {
+        "patternId": "spaces_inside_linter",
+        "level": "Warning",
+        "category": "CodeStyle"
+    },
+    {
+        "patternId": "spaces_left_parentheses_linter",
+        "level": "Warning",
+        "category": "CodeStyle"
+    },
+    {
+        "patternId": "trailing_blank_lines_linter",
+        "level": "Warning",
+        "category": "CodeStyle"
+    },
+    {
+        "patternId": "trailing_whitespace_linter",
+        "level": "Warning",
+        "category": "CodeStyle"
+    },
     {
         "patternId": "undesirable_function_linter",
         "level": "Warning",
