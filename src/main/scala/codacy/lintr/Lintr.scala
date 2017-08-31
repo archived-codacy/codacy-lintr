@@ -19,7 +19,11 @@ object Lintr extends Tool {
   def apply(source: Source.Directory, configuration: Option[List[Pattern.Definition]], files: Option[Set[Source.File]],
             options: Map[Configuration.Key, Configuration.Value])
            (implicit specification: Tool.Specification): Try[List[Result]] = {
-    println("HIIII")
+    println(source)
+    println(configuration)
+    println(files)
+    println(options)
+    println(specification)
     Try {
         CommandRunner.exec(List("Rscript", "-e", "print(getwd())")) match {
         case Right(resultFromTool) =>
@@ -29,8 +33,12 @@ object Lintr extends Tool {
       }
      }
  
-    Try {
+      println("MSG 1")
       val rCall = getRSysCall(source, configuration, files, options, specification)
+      println("MSG 2")
+      println(rCall)
+
+    Try {
       CommandRunner.exec(rCall) match {
         case Right(resultFromTool) =>
           println(resultFromTool.stdout)
@@ -53,7 +61,7 @@ object Lintr extends Tool {
     val optionsJSON = Json.stringify(Json.toJson(options))
     val toolSpecJSON = toolSpecToJSON(specification)
     val arg = s"""{"source":"$source","configuration":$configJSON,"files":$filesJSON,"options":$optionsJSON,"specification":$toolSpecJSON}"""
-    List("Rscript", "/src/codacy-lintr.R", arg)
+    return List("Rscript", "/src/codacy-lintr.R", arg)
   }
 
   private def definitionToJSON(definition: Pattern.Definition): String = {
