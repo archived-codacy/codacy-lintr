@@ -20,4 +20,3 @@ for(file in args_json$files){
     lintr::lint(file)
   }
 }
->>>>>>> fbd8cb4624fed2c16a7b2c48223b12bc048a9c83
