@@ -17,37 +17,31 @@ object Lintr extends Tool {
             options: Map[Configuration.Key, Configuration.Value])
            (implicit specification: Tool.Specification): Try[List[Result]] = {
 
-      // println("before getRSysCall")
-      val rCall = getRSysCall(source, configuration, files, options, specification)
-      // println(rCall)
-      // Try {
+    val rCall = getRSysCall(source, configuration, files, options, specification)
+
+    var lines: List[String] = Nil
+    Try {
       CommandRunner.exec(rCall) match {
         case Right(resultFromTool) =>
-          // println("RIGHT")
-          // println(resultFromTool.stderr)
-          // println(resultFromTool.stdout.length)
-          println(resultFromTool.stdout)
+          lines = resultFromTool.stdout
         case Left(failure) =>
-          // println("LEFT")
           throw failure
-      // }
+      }
     }
-
     Try {
-      val dummy: List[Result] = Nil
-      dummy
+      lines.map { line => parseLine(line) }
     }
   }
 
   private def getRSysCall(source: Source.Directory, configuration: Option[List[Pattern.Definition]],
-                         files: Option[Set[Source.File]], options: Map[Configuration.Key, Configuration.Value],
-                         specification: Tool.Specification): List[String] = {
+                          files: Option[Set[Source.File]], options: Map[Configuration.Key, Configuration.Value],
+                          specification: Tool.Specification): List[String] = {
     val configJSON = "[" + configuration.get.map(x => definitionToJSON(x)).mkString(",") + "]"
     val filesJSON = "[\"" + files.get.mkString("\",\"") + "\"]"
     val optionsJSON = Json.stringify(Json.toJson(options))
     val toolSpecJSON = toolSpecToJSON(specification)
     val arg = s"""{"source":"$source","configuration":$configJSON,"files":$filesJSON,"options":$optionsJSON,"specification":$toolSpecJSON}"""
-    return List("Rscript", "/src/codacy-lintr.R", arg)
+    List("Rscript", "/src/codacy-lintr.R", arg)
   }
 
   private def definitionToJSON(definition: Pattern.Definition): String = {
@@ -67,7 +61,7 @@ object Lintr extends Tool {
   private def patternSpecToJSON(spec: Pattern.Specification): String = {
     val parametersJSON: String = {
       if (spec.parameters.isDefined) {
-        "[" + spec.parameters.get.map( x => parameterSpecToJSON(x) ).mkString(",")  + "]"
+        "[" + spec.parameters.get.map(x => parameterSpecToJSON(x)).mkString(",") + "]"
       } else {
         "[]"
       }
@@ -76,8 +70,27 @@ object Lintr extends Tool {
   }
 
   private def toolSpecToJSON(spec: Tool.Specification): String = {
-    val patternsJSON: String = "[".concat(spec.patterns.map( x => patternSpecToJSON(x)).mkString(",")).concat("]")
+    val patternsJSON: String = "[".concat(spec.patterns.map(x => patternSpecToJSON(x)).mkString(",")).concat("]")
     s"""{"name":"${spec.name}","patterns":$patternsJSON}"""
   }
 
+  private def parseLine(line: String): Result = {
+
+    val resultJSON = Json.parse(line)
+
+    def createIssue(filename: String, lineNumber: String, message: String, patternId: String) = {
+      // If the pylint returns no line put the issue in the first line
+      val issueLine = if (lineNumber.nonEmpty) lineNumber.toInt else 1
+      Result.Issue(Source.File(filename),
+        Result.Message(message),
+        Pattern.Id(patternId),
+        Source.Line(issueLine))
+    }
+
+    createIssue(
+      (resultJSON \ "filename").as[String],
+      (resultJSON \ "line").as[String],
+      (resultJSON \ "message").as[String],
+      (resultJSON \ "patternId").as[String])
+  }
 }
