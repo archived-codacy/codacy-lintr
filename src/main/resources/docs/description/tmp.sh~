@@ -1,0 +1,3 @@
+for f in *.md; do
+cp -- "$f" "../${f%.md}.R"
+done

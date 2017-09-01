@@ -1,7 +1,7 @@
-##Patterns: unneeded_concatenation
+# Pattern: unneeded_concatenation_linter
 
-# correct
+# Pass
 x <- 7
 
-# error
+# Fail
 x <- c(7)
