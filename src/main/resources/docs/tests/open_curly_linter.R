@@ -1,7 +1,16 @@
-# Pattern: ...
+# Pattern: open_curly_linter
 
 # Pass
-...
+f <- function(x) {
+    x
+}
 
-# Fail
-...
+# Fail A
+f <- function(x) { x
+}
+
+# Fail B
+f <- function(x)
+{
+    x
+}
