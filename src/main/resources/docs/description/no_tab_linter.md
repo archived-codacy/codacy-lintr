@@ -1,3 +1,3 @@
-TODO: Write me!
+Check that only spaces are used, never tabs.
 
-[SOURCE]()
+[SOURCE](https://github.com/jimhester/lintr)

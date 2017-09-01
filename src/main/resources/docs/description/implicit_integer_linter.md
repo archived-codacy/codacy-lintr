@@ -1,3 +1,3 @@
-TODO: Write me!
+Check that integers are explicitly typed using the form 1L instead of 1.
 
-[SOURCE]()
+[SOURCE](https://github.com/jimhester/lintr)

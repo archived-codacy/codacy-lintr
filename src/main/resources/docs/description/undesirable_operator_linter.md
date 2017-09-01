@@ -1,3 +1,3 @@
-TODO: Write me!
+Report the use of undesirable operators, e.g. ::: or <<- and suggest an alternative.
 
-[SOURCE]()
+[SOURCE](https://github.com/jimhester/lintr)

@@ -1,3 +1,3 @@
-TODO: Write me!
+Avoid the symbols T and F (for TRUE and FALSE).
 
-[SOURCE]()
+[SOURCE](https://github.com/jimhester/lintr)

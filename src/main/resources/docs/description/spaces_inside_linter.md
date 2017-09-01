@@ -1,3 +1,3 @@
-TODO: Write me!
+Check that parentheses and square brackets do not have spaces directly inside them.
 
-[SOURCE]()
+[SOURCE](https://github.com/jimhester/lintr)

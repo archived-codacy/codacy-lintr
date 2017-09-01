@@ -1,3 +1,3 @@
-TODO: Write me!
+Check there are no trailing whitespace characters.
 
-[SOURCE]()
+[SOURCE](https://github.com/jimhester/lintr)

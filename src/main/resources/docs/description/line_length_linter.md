@@ -1,3 +1,3 @@
-TODO: Write me!
+Check the line length of both comments and code is less than length.
 
-[SOURCE]()
+[SOURCE](https://github.com/jimhester/lintr)
