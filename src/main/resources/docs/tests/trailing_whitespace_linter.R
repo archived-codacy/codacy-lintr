@@ -1,7 +1,7 @@
-# Pattern: ...
+# Pattern: trailing_whitespace_linter
 
 # Pass
 x <- 7
 
 # Fail
-x <- 7    
+x <- 7
