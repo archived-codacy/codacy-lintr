@@ -1,3 +1,3 @@
-TODO: Write me!
+Check that only single quotes are used to delimit string contestants.
 
-[SOURCE]()
+[SOURCE](https://github.com/jimhester/lintr)

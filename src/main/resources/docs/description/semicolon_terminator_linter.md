@@ -1,3 +1,3 @@
-TODO: Write me!
+Check that no semicolons terminate statements.
 
-[SOURCE]()
+[SOURCE](https://github.com/jimhester/lintr)

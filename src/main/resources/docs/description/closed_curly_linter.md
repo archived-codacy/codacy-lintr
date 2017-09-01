@@ -1,3 +1,3 @@
-TODO: Write me!
+Check that closed curly braces should always be on their own line unless they follow an else.
 
-[SOURCE]()
+[SOURCE](https://github.com/jimhester/lintr)

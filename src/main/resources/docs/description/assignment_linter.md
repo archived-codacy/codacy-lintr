@@ -1,3 +1,3 @@
-TODO: Write me!
+Check that <- is always used for assignment
 
-[SOURCE]()
+[SOURCE](https://github.com/jimhester/lintr)
