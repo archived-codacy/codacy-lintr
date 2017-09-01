@@ -27,7 +27,12 @@ version in Docker := "1.0"
 organization := "com.codacy"
 
 val installAll =
-  s"""apk update 
+  s"""apk update
+  && apk add build-base gfortran readline-dev 
+       icu-dev bzip2-dev xz-dev pcre-dev 
+      libjpeg-turbo-dev libpng-dev tiff-dev  
+      curl-dev zip file coreutils bash 
+  && apk add build-base 
   && apk add ca-certificates curl
   && curl --silent 
     --location https://github.com/sgerrand/alpine-pkg-R/releases/download/3.3.1-r0/R-3.3.1-r0.apk --output /var/cache/apk/R-3.3.1-r0.apk 
@@ -37,8 +42,12 @@ val installAll =
     /var/cache/apk/R-3.3.1-r0.apk 
     /var/cache/apk/R-dev-3.3.1-r0.apk 
     /var/cache/apk/R-doc-3.3.1-r0.apk 
+  && R -e "install.packages('igraph', repos='http://cran.rstudio.com/')"
   && rm -fr /var/cache/apk/*
   && echo "http://dl-cdn.alpinelinux.org/alpine/edge/main" >> /etc/apk/repositories 
+  && R -e "install.packages('devtools', repos='http://cran.rstudio.com/')"
+  && R -e "library(devtools); install_github('igraph/rigraph')"
+  && R -e "install.packages('lintr', repos='http://cran.rstudio.com/')"
   && apk --no-cache add bash""".stripMargin.replaceAll(System.lineSeparator()," ")
 
 mappings in Universal <++= (resourceDirectory in Compile) map { (resourceDir: File) =>
