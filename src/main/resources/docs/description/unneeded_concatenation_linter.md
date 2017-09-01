@@ -1,3 +1,3 @@
-TODO: Write me!
+Check that the c function is not used without arguments nor with a single constant.
 
-[SOURCE]()
+[SOURCE](https://github.com/jimhester/lintr)
