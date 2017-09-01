@@ -37,11 +37,6 @@
         "category": "CodeStyle"
     },
     {
-        "patternId": "get_source_expressions",
-        "level": "Warning",
-        "category": "CodeStyle"
-    },
-    {
         "patternId": "implicit_integer_linter",
         "level": "Warning",
         "category": "CodeStyle"

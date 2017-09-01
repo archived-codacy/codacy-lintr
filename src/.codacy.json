@@ -26,9 +26,6 @@
             "patternId": "function_left_parentheses"
           },
           {
-            "patternId": "get_source_expressions"
-          },
-          {
             "patternId": "implicit_integer_linter"
           },
           {
