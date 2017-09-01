@@ -30,9 +30,11 @@ object Lintr extends Tool {
       // Try {
       CommandRunner.exec(rCall) match {
         case Right(resultFromTool) =>
+          println("RIGHT")
+          println(resultFromTool.stderr)
           println(resultFromTool.stdout)
         case Left(failure) =>
-          // println(failure.getMessage)
+          println("LEFT")
           throw failure
       // }
     }
