@@ -3,8 +3,8 @@ library(jsonlite)
 # arg[1] should be the result of system call from lintr.scala
 # codacy-test.json is the result of a single call
 args <- commandArgs(trailingOnly = TRUE)
-args_json <- args[1]
-print(args_json)
+args_json <- fromJSON(args[1])
+# print(args_json)
 # args_json <- fromJSON('codacy-test.json')
 
 # populate df with every error from every R file
@@ -14,11 +14,12 @@ errors_df <- data.frame('filename'=c(),
                         'line'=c())
 for(i in 1:length(args_json$files)){
   file = args_json$files[i]
-  print(i)
-  print(file)
+  # print(i)
+  # print(file)
   ext = toupper(strsplit(file, '\\.')[[1]][-1])
+  # print(ext)
   if(ext=="R"){
-    print('   linting...')
+    # print('   linting...')
 
     # lint the file
     error_obj <- lintr::lint(file)
@@ -29,7 +30,7 @@ for(i in 1:length(args_json$files)){
                            'message'=y$message,
                            'patternId'=y$linter,
                            'line'=y$line_number)
-      error_json <- toJSON(error_list)
+      # error_json <- toJSON(error_df)
       errors_df <- rbind(errors_df, error_df)
     }
   }

@@ -17,24 +17,18 @@ object Lintr extends Tool {
             options: Map[Configuration.Key, Configuration.Value])
            (implicit specification: Tool.Specification): Try[List[Result]] = {
 
-      CommandRunner.exec(List("Rscript", "-e", "print(mean(runif(10)))")) match{
-        case Right(resultFromTool) =>
-          println(resultFromTool.stdout)
-        case Left(failure) =>
-          // println(failure.getMessage)
-          throw failure
-      }
-      println("before getRSysCall")
+      // println("before getRSysCall")
       val rCall = getRSysCall(source, configuration, files, options, specification)
-      println(rCall)
+      // println(rCall)
       // Try {
       CommandRunner.exec(rCall) match {
         case Right(resultFromTool) =>
-          println("RIGHT")
-          println(resultFromTool.stderr)
+          // println("RIGHT")
+          // println(resultFromTool.stderr)
+          // println(resultFromTool.stdout.length)
           println(resultFromTool.stdout)
         case Left(failure) =>
-          println("LEFT")
+          // println("LEFT")
           throw failure
       // }
     }
