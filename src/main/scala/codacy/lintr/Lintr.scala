@@ -23,6 +23,7 @@ object Lintr extends Tool {
     Try {
       CommandRunner.exec(rCall) match {
         case Right(resultFromTool) =>
+//          println(resultFromTool.stdout)
           lines = resultFromTool.stdout
         case Left(failure) =>
           throw failure
@@ -88,9 +89,9 @@ object Lintr extends Tool {
     }
 
     createIssue(
-      (resultJSON \ "filename").as[String],
-      (resultJSON \ "line").as[String],
-      (resultJSON \ "message").as[String],
-      (resultJSON \ "patternId").as[String])
+      (resultJSON \ "filename").get.toString,
+      (resultJSON \ "line").get.toString,
+      (resultJSON \ "message").get.toString,
+      (resultJSON \ "patternId").get.toString)
   }
 }
