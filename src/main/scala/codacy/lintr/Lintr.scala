@@ -23,7 +23,6 @@ object Lintr extends Tool {
     Try {
       CommandRunner.exec(rCall) match {
         case Right(resultFromTool) =>
-//          println(resultFromTool.stdout)
           lines = resultFromTool.stdout
         case Left(failure) =>
           throw failure
@@ -34,6 +33,11 @@ object Lintr extends Tool {
     }
   }
 
+  /** Returns a list of strings than when executed as a single system call
+   *  will call the codacy-lintr.R script. The argument to this script is a
+   *  single JSON blob that describes the entire contents of the .codacy.JSON
+   *  file.
+   */
   private def getRSysCall(source: Source.Directory, configuration: Option[List[Pattern.Definition]],
                           files: Option[Set[Source.File]], options: Map[Configuration.Key, Configuration.Value],
                           specification: Tool.Specification): List[String] = {
@@ -75,12 +79,15 @@ object Lintr extends Tool {
     s"""{"name":"${spec.name}","patterns":$patternsJSON}"""
   }
 
+
+  /** Parses a line of JSON output from the system call to R and returns an
+    * issue in the form of a Result.
+    */
   private def parseLine(line: String): Result = {
 
     val resultJSON = Json.parse(line)
 
     def createIssue(filename: String, lineNumber: String, message: String, patternId: String) = {
-      // If the pylint returns no line put the issue in the first line
       val issueLine = if (lineNumber.nonEmpty) lineNumber.toInt else 1
       Result.Issue(Source.File(filename),
         Result.Message(message),
