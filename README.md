@@ -1,11 +1,7 @@
-[![Codacy Badge](https://api.codacy.com/project/badge/grade/8bd24fe19ffb4c3ea0e947225e962d28)](https://www.codacy.com/app/Codacy/codacy-pylint)
-[![Build Status](https://circleci.com/gh/codacy/codacy-pylint.svg?style=shield&circle-token=:circle-token)](https://circleci.com/gh/codacy/codacy-pylint)
+# Codacy Lintr
 
-# Codacy Pylint
-
-This is the docker engine we use at Codacy to have [Pylint](http://www.pylint.org/) support.
-You can also create a docker to integrate the tool and language of your choice!
-Check the **Docs** section for more information.
+A docker engine which could be used in Codacy to have [Lintr](https://github.com/jimhester/lintr)
+support.
 
 ## Usage
 
