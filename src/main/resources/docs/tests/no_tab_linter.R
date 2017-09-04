@@ -1,11 +1,11 @@
-# Pattern: no_tab_linter
+##Pattern: no_tab_linter
 
 # Pass
 f <- function(x) {
     x * x
 }
 
-# Fail
+##Warn: no_tab_linter
 f <- function(x) {
 	x * x
 }

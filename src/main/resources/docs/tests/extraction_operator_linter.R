@@ -1,10 +1,10 @@
-# Pattern: extraction_operator
+##Pattern: extraction_operator
 
 # Pass
 my_object[["filename"]]
 
-# Fail A
+##Warn: extraction_operator
 my_object["filename"]
 
-# Fail B
+##Warn: extraction_operator
 my_object$filename

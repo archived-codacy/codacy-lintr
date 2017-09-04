@@ -1,11 +1,11 @@
-# Pattern: undesirable_function_linter
+##Pattern: undesirable_function_linter
 
 # Pass
 f <- function(x) {
     x
 }
 
-# Fail
+##Warn: undesirable_function_linter
 f <- function(x) {
     return(x)
 }

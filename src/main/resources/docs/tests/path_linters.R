@@ -1,13 +1,13 @@
-# Pattern: path_linters
+##Pattern: path_linters
 
 # Pass
 path <- "src/my-file.csv"
 
-# Fail A
+##Warn: path_linters
 path <- "/var/my-file.csv"
 
-# Fail B
+##Warn: path_linters
 path <- "C:\\System\\my-file.csv"
 
-# Fail C
+##Warn: path_linters
 path <- "~/docs/my-file.csv"

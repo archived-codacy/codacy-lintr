@@ -1,7 +1,7 @@
-# Pattern: object_usage_linter
+##Pattern: object_usage_linter
 
 # Pass
 ...
 
-# Fail
+##Warn: object_usage_linter
 ...

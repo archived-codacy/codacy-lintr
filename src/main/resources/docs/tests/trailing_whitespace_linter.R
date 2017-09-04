@@ -1,7 +1,7 @@
-# Pattern: trailing_whitespace_linter
+##Pattern: trailing_whitespace_linter
 
 # Pass
 x <- 7
 
-# Fail
+##Warn: trailing_whitespace_linter
 x <- 7

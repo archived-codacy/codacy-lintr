@@ -1,7 +1,7 @@
-# Pattern: infix_spaces
+##Pattern: infix_spaces
 
 # Pass
 average <- mean(feet / 12 + inches, na.rm = TRUE)
 
-# Bad
+##Warn: infix_spaces
 average<-mean(feet/12+inches,na.rm=TRUE)

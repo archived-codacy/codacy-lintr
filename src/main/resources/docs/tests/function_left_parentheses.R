@@ -1,7 +1,7 @@
-# Pattern: function_left_parentheses
+##Pattern: function_left_parentheses
 
 # Pass
 mean(mtcars$mpg)
 
-# Fail
+##Warn: function_left_parentheses
 mean (mtcars$mpg+1)

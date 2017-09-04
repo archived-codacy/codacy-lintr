@@ -1,7 +1,7 @@
-# Pattern: assignment_linter
+##Pattern: assignment_linter
 
 # Pass
 x <- 7
 
-# Fail
+##Warn: assignment_linter
 x = 7

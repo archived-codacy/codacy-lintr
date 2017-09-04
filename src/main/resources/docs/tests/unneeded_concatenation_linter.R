@@ -1,7 +1,7 @@
-# Pattern: unneeded_concatenation_linter
+##Pattern: unneeded_concatenation_linter
 
 # Pass
 x <- 7
 
-# Fail
+##Warn: unneeded_concatenation_linter
 x <- c(7)

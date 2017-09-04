@@ -1,10 +1,10 @@
-# Pattern: commas_linter
+##Pattern: commas_linter
 
 # Pass
 vec <- c(1, 2, 3)
 
-# Fail A
+##Warn: commas_linter
 vec <- c(1,2, 3)
 
-# Fail B
+##Warn: commas_linter
 vec <- c(1, 2 , 3)

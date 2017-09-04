@@ -1,7 +1,7 @@
-# Pattern: line_length
+##Pattern: line_length
 
 # Pass
 x <- "hi"
 
-# Fail
+##Warn: line_length
 x <- "hi"; x <- "hi"; x <- "hi"; x <- "hi"; x <- "hi"; x <- "hi"; x <- "hi"; x <- "hi"; x <- "hi"; x <- "hi"; x <- "hi"

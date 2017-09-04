@@ -1,15 +1,15 @@
-# Pattern: open_curly_linter
+##Pattern: open_curly_linter
 
 # Pass
 f <- function(x) {
     x
 }
 
-# Fail A
+##Warn: open_curly_linter
 f <- function(x) { x
 }
 
-# Fail B
+##Warn: open_curly_linter
 f <- function(x)
 {
     x

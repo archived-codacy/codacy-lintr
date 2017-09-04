@@ -1,4 +1,4 @@
-# Pattern: pipe_continuation_linter
+##Pattern: pipe_continuation_linter
 
 # Pass
 df %>%
@@ -7,6 +7,6 @@ df %>%
 # Pass B
 df %>% mutate(sevens = 7)
 
-# Fail
+##Warn: pipe_continuation_linter
 df %>% mutate(sevens = 7) %>%
     mutate(eights = 8)

@@ -1,4 +1,4 @@
-# Pattern: comment_linter
+##Pattern: comment_linter
 
 # Pass A
 # Create historgram... 
@@ -6,8 +6,8 @@
 # Pass B
 x <- runif(10)  # generate 10 values between 0 and 1
 
-# Fail A
+##Warn: comment_linter
 #Create histogram...
 
-# Fail B
+##Warn: comment_linter
 x <- runif(10) # generate 10 values between 0 and 1

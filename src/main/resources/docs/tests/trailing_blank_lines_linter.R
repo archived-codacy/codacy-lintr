@@ -1,7 +1,7 @@
-# Pattern: trailing_blank_lines_linter
+##Pattern: trailing_blank_lines_linter
 
 # Pass
 x <- 7
 
-# Fail
+##Warn: trailing_blank_lines_linter
 x <- 7

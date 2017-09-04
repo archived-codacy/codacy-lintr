@@ -1,7 +1,7 @@
-# Pattern: single_quotes_linter
+##Pattern: single_quotes_linter
 
 # Pass
 s <- "s"
 
-# Fail
+##Warn: single_quotes_linter
 s <- 's'

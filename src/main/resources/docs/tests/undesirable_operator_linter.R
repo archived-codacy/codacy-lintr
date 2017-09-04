@@ -1,7 +1,7 @@
-# Pattern: undesirable_operator_linter
+##Pattern: undesirable_operator_linter
 
 # Pass
 x <- 7
 
-# Fail
+##Warn: undesirable_operator_linter
 x <<- 7

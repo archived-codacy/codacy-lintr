@@ -1,11 +1,11 @@
-# Pattern: semicolon_terminator_linter
+##Pattern: semicolon_terminator_linter
 
 # Pass
 x <- 7
 x * x
 
-# Fail A
+##Warn: semicolon_terminator_linter
 x <- 7; x * x
 
-# Fail B
+##Warn: semicolon_terminator_linter
 x <- 7;

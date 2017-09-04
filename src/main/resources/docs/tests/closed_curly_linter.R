@@ -1,14 +1,14 @@
-# Pattern: closed_curly_linter
+##Pattern: closed_curly_linter
 
 # Pass
 if (is.null(ylim)) {
   ylim <- c(0, 0.06)
 }
 
-# Fail A
+##Warn: closed_curly_linter
 if (is.null(ylim)) {
   ylim <- c(0, 0.06)}
 
-# Fail B
+##Warn: closed_curly_linter
 if (is.null(ylim)) {ylim <- c(0, 0.06)}
 

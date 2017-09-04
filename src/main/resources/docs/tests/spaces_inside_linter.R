@@ -1,7 +1,7 @@
-# Pattern: spaces_inside_linter
+##Pattern: spaces_inside_linter
 
 # Pass
 x <- (1 + 2)
 
-# Fail
+##Warn: spaces_inside_linter
 x <- ( 1 + 2 )
