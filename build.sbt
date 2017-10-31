@@ -1,8 +1,8 @@
 import com.typesafe.sbt.packager.docker.{Cmd, ExecCmd}
 
-name := """codacy-engine-lintr"""
+name := """codacy-lintr"""
 
-version := "1.0-SNAPSHOT"
+version := "1.0.0-SNAPSHOT"
 
 val languageVersion = "2.11.7"
 
@@ -22,7 +22,7 @@ enablePlugins(JavaAppPackaging)
 
 enablePlugins(DockerPlugin)
 
-version in Docker := "1.0"
+version in Docker := "1.0.0"
 
 organization := "com.codacy"
 
@@ -48,16 +48,23 @@ val installAll =
   && R -e "install.packages('devtools', repos='http://cran.rstudio.com/')"
   && R -e "library(devtools); install_github('igraph/rigraph')"
   && R -e "install.packages('lintr', repos='http://cran.rstudio.com/')"
-  && apk --no-cache add bash""".stripMargin.replaceAll(System.lineSeparator()," ")
+  && apk --no-cache add bash""".stripMargin.replaceAll(System.lineSeparator(), " ")
 
 mappings in Universal <++= (resourceDirectory in Compile) map { (resourceDir: File) =>
   val src = resourceDir / "docs"
   val dest = "/docs"
 
-  for {
+  val resFiles = for {
     path <- (src ***).get
     if !path.isDirectory
-  } yield path -> path.toString.replaceFirst(src.toString, dest)
+  } yield (path, path.toString.replaceFirst(src.toString, dest))
+
+  val scriptSrc = resourceDir / "codacy-lintr.R"
+  val scriptDest = "/lintr"
+
+  val scriptFile = scriptSrc.toString.replaceFirst(resourceDir.toString, scriptDest)
+
+  resFiles :+ (scriptSrc, scriptFile)
 }
 
 val dockerUser = "docker"
@@ -75,10 +82,10 @@ dockerCommands := dockerCommands.value.flatMap {
   )
   case cmd@(Cmd("ADD", "opt /opt")) => List(cmd,
     Cmd("RUN", "mv /opt/docker/docs /docs"),
+    Cmd("RUN", "mv /opt/docker/lintr /lintr"),
+    Cmd("RUN", "chmod +x /lintr/codacy-lintr.R"),
     Cmd("RUN", s"adduser -u 2004 -D $dockerUser"),
     ExecCmd("RUN", Seq("chown", "-R", s"$dockerUser:$dockerGroup", "/docs"): _*)
   )
   case other => List(other)
 }
-
-//dockerBuildOptions ++= Seq("--squash")
